@@ -1,0 +1,31 @@
+{
+  "name": "magicspiegel",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "postinstall": "install-app-deps",
+    "lint": "tslint -c tslint.json -p tsconfig.json",
+    "build": "tsc",
+    "test": "npm run build && electron ./dist/Test/test.js",
+    "start": "npm run build && electron ./dist/Electron/main.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/better-sqlite3": "^5.4.0",
+    "@types/body-parser": "^1.19.0",
+    "@types/express": "^4.17.3",
+    "better-sqlite3": "^6.0.1",
+    "body-parser": "^1.19.0",
+    "electron": "^7.1.7",
+    "electron-rebuild": "^1.10.1",
+    "express": "^4.17.1",
+    "face-api.js": "^0.22.0",
+    "strongly-typed-events": "^1.6.3",
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.4"
+  },
+  "devDependencies": {
+    "electron-builder": "^22.3.2"
+  }
+}

@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+      "skipLibCheck": true,
+      "module": "commonjs",
+      "noImplicitAny": true,
+      "sourceMap": true,
+      "outDir": "dist",
+      "baseUrl": ".",
+      "paths": {
+        "*": ["node_modules/*"]
+      },
+      "target": "ES6"
+    },
+    "include": [
+      "src/**/*"
+    ],
+    "exclude": [
+      "src/Widgets/*.ignore"
+    ]
+  }

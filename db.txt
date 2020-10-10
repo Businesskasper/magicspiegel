@@ -1,0 +1,38 @@
+CREATE TABLE IF NOT EXISTS Descriptor (
+    DescriptorString TEXT PRIMARY KEY,
+    UserName TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS User (
+    Name TEXT PRIMARY KEY,
+    Enabled INTEGER NOT NULL
+);
+
+REPLACE INTO User (Name, Enabled) VALUES ('PUBLIC', 1);
+
+CREATE TABLE IF NOT EXISTS WidgetSettingValue (
+    UserName TEXT NOT NULL,
+    WidgetSettingId INTEGER NOT NULL,
+    Value TEXT,
+    PRIMARY KEY(UserName, WidgetSettingId)
+);
+
+CREATE TABLE IF NOT EXISTS WidgetSettingKey (
+    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+    WidgetId INTEGER NOT NULL,
+    Name TEXT NOT NULL,
+    FriendlyName TEXT,
+    Description TEXT,
+    ReadOnly INTEGER NOT NULL,
+    Type INTEGER NOT NULL,
+    Options TEXT,
+    PresetValue TEXT
+);
+
+CREATE TABLE IF NOT EXISTS Widget (
+    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+    Name TEXT NOT NULL,
+    Version INTEGER NOT NULL,
+    Description TEXT,
+    Author TEXT
+);
