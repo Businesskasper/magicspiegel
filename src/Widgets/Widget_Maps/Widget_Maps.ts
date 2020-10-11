@@ -1,8 +1,8 @@
-import * as Service from "../Services/export";
+import * as Service from "../../Services/export";
 import { MapsWidgetSettings } from "./Widget_Maps_Settings";
-import { Widget } from "./Widget";
+import { Widget } from "../Widget";
 
-class Maps extends Widget {
+export class Maps extends Widget {
 
     constructor(dataAdapter: Service.DataAdapter, mirrorService: Service.MirrorService){
 
@@ -87,5 +87,3 @@ class Maps extends Widget {
         (<HTMLIFrameElement>iframe_maps).src = requestString;    
     }
 }
-
-export = (da: Service.DataAdapter, ms: Service.MirrorService) => new Maps(da, ms);

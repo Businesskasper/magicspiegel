@@ -1,8 +1,8 @@
-import * as Services from "../Services/export";
-import { Widget } from "./Widget";
+import * as Services from "../../Services/export";
+import { Widget } from "../Widget";
 import { WeatherWidgetSettings } from "./Widget_Weather_Settings";
 
-class Weather extends Widget {
+export class Weather extends Widget {
 
     constructor(dataAdapter: Services.DataAdapter, mirrorService: Services.MirrorService){
         
@@ -265,5 +265,3 @@ class WeatherData {
     public WeatherCode: number;
     public Temperature: number;
 }
-
-export = (da: Services.DataAdapter, ms: Services.MirrorService) => new Weather(da, ms);

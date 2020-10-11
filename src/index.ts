@@ -4,7 +4,7 @@ import { env } from "face-api.js";
 import * as fs from "fs";
 import * as readline from "readline";
 
-let dataAdapter = new Services.DataAdapter(); // Is our interface to the database
+let dataAdapter = new Services.DataAdapter("./magicspiegel.db"); // Is our interface to the database
 let faceRecognitionService  = new Services.FaceRecognitionService(dataAdapter); // Is a wrapper for faceapi.js and manages users
 let mirrorService = new Services.MirrorService(dataAdapter); // Presents our widgets
 
@@ -37,7 +37,7 @@ try {
     setEnvironment('./secrets.env');
 
     // Create the database
-    dataAdapter.InitializeDatabase("./magicspiegel.db", "./db.txt");
+    dataAdapter.InitializeDatabase("./db.txt");
     
     // Load installed widgets
     mirrorService.RegisterWidgets();
@@ -65,16 +65,26 @@ catch (err) {
 // Sets up environment variables
 function setEnvironment(envFilePath: string): void {
 
-    let lineReader = readline.createInterface({
-        input: fs.createReadStream(envFilePath)
-    });
+    fs.readFileSync(envFilePath, 'utf-8')
+    .split('\n')
+    .filter(Boolean)
+    .forEach((line) => {
 
-    lineReader.on('line', (line) => {
-
-        if (! line.includes('='))
-            return;
-        
         console.log(`Setting variable ${line.split('=')[0]}`)
         process.env[line.split('=')[0]] = line.split('=')[1];
-    })
+    });
+
+
+    // let lineReader = readline.createInterface({
+    //     input: fs.createReadStream(envFilePath)
+    // });
+
+    // lineReader.on('line', (line) => {
+
+    //     if (! line.includes('='))
+    //         return;
+        
+    //     console.log(`Setting variable ${line.split('=')[0]}`)
+    //     process.env[line.split('=')[0]] = line.split('=')[1];
+    // })
 }

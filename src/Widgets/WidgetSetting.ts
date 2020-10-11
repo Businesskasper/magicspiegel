@@ -21,14 +21,14 @@ export abstract class WidgetSettings {
 
         if (widgetSettingsItems !== undefined) {
             
-            this.WidgetSettingsItems = this.WidgetSettingsItems, widgetSettingsItems;
+            this.WidgetSettingsItems = this.WidgetSettingsItems.concat(widgetSettingsItems);
         }
     }
 
     // This is mainly for development. Secrets, like api keys, should not be stored directly in the "Default" field.
     public static GetFromEnvironment(variableName :string): string {
 
-        return process.env[variableName] ?? "";
+        return process.env[variableName] != undefined ? process.env[variableName] : "";
     }
 }
 

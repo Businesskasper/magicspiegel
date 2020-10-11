@@ -90,18 +90,20 @@ export class MirrorService {
 
         console.log("MirrorService.LoadWidgets() -> Starting")
     
-        fs.readdirSync(path.resolve(__dirname, "../Widgets")).forEach((installedWidget) => {
+        fs.readdirSync(path.resolve(__dirname, "../Widgets"), {withFileTypes: true})
+        .filter(item => item.isDirectory())
+        .forEach((directory) => {
 
-            if (installedWidget.startsWith("Widget_") && installedWidget.endsWith(".js") && !(installedWidget.endsWith("Settings.js") || installedWidget.endsWith(".ignore") || installedWidget.endsWith("Classes.js"))) {
+            let widgetExport: string = path.resolve(__dirname, "../Widgets", directory.name, "export.js");
+            if (fs.existsSync(widgetExport)) {
 
-                console.log(`"MirrorService.LoadWidgets() -> Found widget ${installedWidget}`);  
-                let widgetFactory = require(path.resolve(__dirname, "../Widgets", installedWidget));
-                let widget : Widget = widgetFactory(this.dataAdapter, this);
+                let widgetFactory = require(widgetExport);
+                let widget = widgetFactory(this.dataAdapter, this);
                 this.widgetsRegistered.push(widget);
                 widget.Register();
             }
         })
-
+        
         this.LoadGeneralWidgets();
     }
 

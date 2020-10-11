@@ -3,6 +3,7 @@ import * as path from "path";
 import { Backend } from "../Express/Backend";
 import * as Services from "../Services/export";
 import {ipcMain} from 'electron';
+import { fstat } from "fs";
 
 
 let mainWindow : BrowserWindow;
@@ -11,7 +12,8 @@ let backend: Backend;
 app.on('ready', () => {
 
     // Set up backend database access used for user registration and configuration
-    let dataAdapter = new Services.DataAdapter();
+    let dataAdapter = new Services.DataAdapter("./magicspiegel.db");
+    
    
     // This event will be triggered from the backend when a user changes the widget configuration. We use inter process communication to notify the main window.
     dataAdapter.onWidgetSettingsUpdatedEvent.subscribe((sender : Services.DataAdapter, userChanged: string) => {

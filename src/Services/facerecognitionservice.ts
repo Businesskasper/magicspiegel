@@ -8,7 +8,6 @@ import * as Model from '../Model/export';
 
 /*
 * This class uses faceapi.js in order to detect faces and compare the calculated face descriptors with the ones saved on the database.
-* We currently use two instances - one on the frontend and one on the main app. Inter process communication would be a little unhandy.
 */
 export class FaceRecognitionService {
 

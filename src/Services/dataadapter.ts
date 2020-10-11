@@ -13,6 +13,7 @@ import { EventDispatcher, IEvent } from "strongly-typed-events";
 export class DataAdapter {
 
     private Database: bettersqlite3.Database;
+    public dbpath: string;
 
     // This gets triggered from the frontend if the user updates his profile or the public widgets.
     private widgetSettingsUpdatedEvent = new EventDispatcher<DataAdapter, string>();
@@ -23,16 +24,15 @@ export class DataAdapter {
     }
 
 
-    constructor() {
+    constructor(databasePath: string) {
+        this.dbpath = databasePath;
+        this.Database = new bettersqlite3(databasePath, {verbose: console.log});
     }
 
 
     // Sets up the database by reading a .sql file
-    public InitializeDatabase(databasePath: string, databaseSetupPath: string): void {
+    public InitializeDatabase(databaseSetupPath: string): void {
 
-        console.log(`InitializeDatabase() -> Setting up db on ${databasePath}`);
-        this.Database = new bettersqlite3(databasePath, {verbose: console.log});
-        
         this.ExecNonQueryScript(fs.readFileSync(databaseSetupPath, {encoding: 'utf-8'}));
     }
 

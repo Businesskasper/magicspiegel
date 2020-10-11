@@ -1,8 +1,8 @@
-import * as Services from "../Services/export";
-import { Widget } from "./Widget";
+import * as Services from "../../Services/export";
+import { Widget } from "../Widget";
 import { TestWidgetSettings } from "./Widget_Test_Settings";
 
-class Test extends Widget {
+export class Test extends Widget {
 
     constructor(dataAdapter: Services.DataAdapter, mirrorService: Services.MirrorService){
         
@@ -25,7 +25,5 @@ class Test extends Widget {
     public Refresh(): void {
         
     }
-
 }
 
-export = (da: Services.DataAdapter, ms: Services.MirrorService) => new Test(da, ms);

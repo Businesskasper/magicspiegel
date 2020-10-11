@@ -1,5 +1,4 @@
-import { WidgetSettings, WidgetSettingsItem, WidgetSettingsItemType } from "./WidgetSetting";
-import * as Data from "../Services/export";
+import { WidgetSettings, WidgetSettingsItem, WidgetSettingsItemType } from "../WidgetSetting";
 
 export class TestWidgetSettings extends WidgetSettings {
 

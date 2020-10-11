@@ -1,8 +1,8 @@
-import * as Services from "../Services/export";
-import { Widget } from "./Widget";
+import * as Services from "../../Services/export";
+import { Widget } from "../Widget";
 import { ClockWidgetSettings } from "./Widget_Clock_Settings";
 
-class Clock extends Widget {
+export class Clock extends Widget {
 
     constructor(dataAdapter: Services.DataAdapter, mirrorService: Services.MirrorService){
         
@@ -88,5 +88,3 @@ class Clock extends Widget {
         return (i < 10) ? "0" + i.toString() : i.toString();
     }
 }
-
-export = (da: Services.DataAdapter, ms: Services.MirrorService) => new Clock(da, ms);

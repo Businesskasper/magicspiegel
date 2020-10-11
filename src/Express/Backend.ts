@@ -5,7 +5,6 @@ import bodyParser = require("body-parser");
 import * as Model from '../Model/export';
 import { Widget } from "../Widgets/Widget";
 import { WidgetSettings } from "../Widgets/WidgetSetting";
-
 /*
 * This is our backend for the user interface. You can register and manager widgets.
 */
@@ -19,7 +18,7 @@ export class Backend {
 
         this.expressInstance = ExpressJs();
         this.dataAdapter = DataAdapter;
-        this.dataAdapter.InitializeDatabase("./magicspiegel.db", "./db.txt"); //TODO: This should be unncesessary, since the database is set up by the main process.
+        // this.dataAdapter.InitializeDatabase("./db.txt"); //TODO: This should be unncesessary, since the database is set up by the main process.
     }
 
     public ConfigureMiddleware(): Backend {

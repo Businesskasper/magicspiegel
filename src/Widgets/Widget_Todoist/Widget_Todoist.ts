@@ -1,8 +1,8 @@
-import * as Services from "../Services/export";
-import { Widget } from "./Widget";
+import * as Services from "../../Services/export";
+import { Widget } from "../Widget";
 import { TodoistWidgetSettings } from "./Widget_Todoist_Settings";
 
-class Todoist extends Widget {
+export class Todoist extends Widget {
 
     constructor(dataAdapter: Services.DataAdapter, mirrorService: Services.MirrorService){
         
@@ -194,5 +194,3 @@ class Todoist extends Widget {
         }
     }
 }
-
-export = (da: Services.DataAdapter, ms: Services.MirrorService) => new Todoist(da, ms);

@@ -1,4 +1,4 @@
-import { WidgetSettings } from "./WidgetSetting";
+import { WidgetSettings } from "../WidgetSetting";
 
 export class ClockWidgetSettings extends WidgetSettings {
 

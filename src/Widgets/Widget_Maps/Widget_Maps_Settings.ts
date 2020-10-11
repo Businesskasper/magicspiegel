@@ -1,4 +1,4 @@
-import { WidgetSettings, WidgetSettingsItem, WidgetSettingsItemType } from "./WidgetSetting";
+import { WidgetSettings, WidgetSettingsItem, WidgetSettingsItemType } from "../WidgetSetting";
 
 export class MapsWidgetSettings extends WidgetSettings {
 
