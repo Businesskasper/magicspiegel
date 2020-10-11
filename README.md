@@ -21,13 +21,13 @@ The project runs an electron app which continously detects faces. This is done b
 Users can register via a web frontend. The page is hosted via [express](https://github.com/expressjs/express) inside a electron renderer process. Communication between the frontend and the main app is done using the database and inter process communication.
 <br>
 
-![UserInterface](./docs/img/ui.png)
+![UserInterface](./docs/img/ui.PNG)
 <br><br>
 
 If a face is detected, the descriptors are compared to the database. If a registered user is identified, his profile (his selected widgets and personal widget settings) are loaded. 
 <br>
 
-![Mirror](./docs/img/mirror.png)
+![Mirror](./docs/img/mirror.PNG)
 <br>
 Note that the black area is where the user sees himself inside the mirror :)
 <br><br>
