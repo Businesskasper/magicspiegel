@@ -19,12 +19,14 @@ magicspiegel is under construction. Many things are not in their final state. Es
 The project runs an electron app which continously detects faces. This is done by using [justadudewhohacks tensorflow based face-api.js](https://github.com/justadudewhohacks/face-api.js/).
 <br><br>
 Users can register via a web frontend. The page is hosted via [express](https://github.com/expressjs/express) inside a electron renderer process. Communication between the frontend and the main app is done using the database and inter process communication.
-<br><br>
-![User Interface](./docs/img/ui.png)
+<br>
+
+![UserInterface](./docs/img/ui.png)
 <br><br>
 
 If a face is detected, the descriptors are compared to the database. If a registered user is identified, his profile (his selected widgets and personal widget settings) are loaded. 
-<br><br>
+<br>
+
 ![Mirror](./docs/img/mirror.png)
 <br>
 Note that the black area is where the user sees himself inside the mirror :)
