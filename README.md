@@ -41,7 +41,7 @@ The mirror is divided into services:<br><br>
 The DataAdapter is the interface to the database. It provides repositories for all data types. The database itself is sqlite.<br><br>
 [``facerecognitionservice``](./src/Services/facerecognitionservice.ts)<br>
 This service uses faceapi.js to detect faces and to compare them to stored face descriptors in the database. If a user is identified, it notifies the mirror service via events.<br><br>
-[``mirrorservice``](./src/services/mirrorservice.ts)<br>
+[``mirrorservice``](./src/Services/mirrorservice.ts)<br>
 This is the main "worker" which presents widets to the user and decides when to load a new profile.
 <br>
 
@@ -90,7 +90,7 @@ Once my face is recognized, the mirror will greet me and show my widgets:
 ![Testwidget user inteface](./docs/img/testwidget.png)
 
 <br><br>
-## 1. Setup the files
+# 1. Setup the files
 
 We create a new Directory ``Widget_Test`` inside the widget directory. Inside that we create the files ``Widget_Test.ts``, ``Widget_Test_Settings.ts`` and ``export.ts``.
 
@@ -106,7 +106,7 @@ We create a new Directory ``Widget_Test`` inside the widget directory. Inside th
 ```
 <br>
 
-## 2. Define the settings class
+# 2. Define the settings class
 
 The settings class must extend the abstract class ``WidgetSettings``. This makes sure, that the user can configure the default values ``Enabled``, ``Div`` and ``Row``. The class is also used by the mirror service to store all setting items in the database.
 
@@ -138,7 +138,7 @@ constructor(key: string, friendlyName: string, description: string, readOnly: bo
 As you can see, this corresponds directly to the display on the user interface.
 <br><br>
 
-## 3. Define the widget
+# 3. Define the widget
 
 The Widget class must extend the base class ``Widget``. This makes sure the widget provides basic metadata information which is presented to the user on the web interface. The base class will also handle when to show the widget, since it listens to the ``currentUserChangedEvent`` of the mirror service. It will also query the database for the corresponding ``WidgetSettings`` object.
 
