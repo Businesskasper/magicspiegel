@@ -1,17 +1,14 @@
 # magicspiegel
 a modular, customizable smart mirror based on face recognition!
+I did not find any existing smart mirror project with face recognition and multi profile support. Also, I wanted to try out electron.
 <br><br>
 
 ## what is a smart mirror?
 A smart mirror presents widgets to the user. This is done by using a flat screen behind a spy mirror. The screen must be completely black, so that only the widgets are visible on the front.
-<br><br>
 
-## why did I start this project?
-Because I did not find any existing smart mirror project with face recognition and multi profile support. Also because I wanted to try out electron and needed a usecase :)
-<br><br>
+This project is under construction! Many things are not in their final state. Especially the configuration website is highly provisionally and still in its poc state. Feel free to build own widgets as described below!
 
-## anything else?
-This project is under construction! Many things are not in their final state. Especially the configuration website is highly provisionally and still in its poc state. Contribution is highly appreciated! Also, feel free to build own widgets!
+<br><br>
 
 # the project
 
