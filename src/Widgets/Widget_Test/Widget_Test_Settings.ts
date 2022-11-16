@@ -1,14 +1,33 @@
-import { WidgetSettings, WidgetSettingsItem, WidgetSettingsItemType } from "../WidgetSetting";
+import {
+    WidgetSettings,
+    WidgetSettingsItem,
+    WidgetSettingsItemType
+} from "../WidgetSetting";
 
 export class TestWidgetSettings extends WidgetSettings {
+  public TestText: string;
+  public TestOption: string;
 
-    public TestText: string;
-    public TestOption: string;
-        
-    constructor() {
-        super([
-            new WidgetSettingsItem("TestText", "Test Text", "Dies ist nur ein Test", false, WidgetSettingsItemType.TEXT, null, "TestWert"),
-            new WidgetSettingsItem("TestOption", "Test Option", "Dies ist auch nur ein Test", false, WidgetSettingsItemType.OPTION, "Optionswert1|Optionswert2", null)
-        ]);
-    }
+  constructor() {
+    super([
+      new WidgetSettingsItem(
+        "TestText",
+        "Test Text",
+        "Dies ist nur ein Test",
+        false,
+        WidgetSettingsItemType.TEXT,
+        null,
+        "TestWert"
+      ),
+      new WidgetSettingsItem(
+        "TestOption",
+        "Test Option",
+        "Dies ist auch nur ein Test",
+        false,
+        WidgetSettingsItemType.OPTION,
+        "Optionswert1|Optionswert2",
+        null
+      ),
+    ]);
+  }
 }

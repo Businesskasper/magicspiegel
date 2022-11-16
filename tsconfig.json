@@ -1,20 +1,19 @@
 {
-    "compilerOptions": {
-      "skipLibCheck": true,
-      "module": "commonjs",
-      "noImplicitAny": true,
-      "sourceMap": true,
-      "outDir": "dist",
-      "baseUrl": ".",
-      "paths": {
-        "*": ["node_modules/*"]
-      },
-      "target": "ES6"
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "module": "commonjs",
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "outDir": "dist",
+    "baseUrl": ".",
+    "paths": {
+      "*": ["node_modules/*"]
     },
-    "include": [
-      "src/**/*"
-    ],
-    "exclude": [
-      "src/Widgets/*.ignore"
-    ]
-  }
+	"moduleResolution": "Node",
+	"target": "ES6"
+    // "target": "ES5",
+    // "lib": ["es2016", "dom", "es5"]
+  },
+  "include": ["src/**/*"],
+  "exclude": ["src/Widgets/*.ignore"]
+}

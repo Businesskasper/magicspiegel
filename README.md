@@ -1,14 +1,17 @@
 # magicspiegel
 a modular, customizable smart mirror based on face recognition!
-I did not find any existing smart mirror project with face recognition and multi profile support. Also, I wanted to try out electron.
 <br><br>
 
 ## what is a smart mirror?
 A smart mirror presents widgets to the user. This is done by using a flat screen behind a spy mirror. The screen must be completely black, so that only the widgets are visible on the front.
-
-This project is under construction! Many things are not in their final state. Especially the configuration website is highly provisionally and still in its poc state. Feel free to build own widgets as described below!
-
 <br><br>
+
+## why did I start this project?
+Because I did not find any existing smart mirror project with face recognition and multi profile support. Also because I wanted to try out electron and needed a usecase :)
+<br><br>
+
+## anything else?
+This project is under construction! Many things are not in their final state. Especially the configuration website is highly provisionally and still in its poc state. Contribution is highly appreciated! Also, feel free to build own widgets!
 
 # the project
 
@@ -38,7 +41,7 @@ The mirror is divided into services:<br><br>
 The DataAdapter is the interface to the database. It provides repositories for all data types. The database itself is sqlite.<br><br>
 [``facerecognitionservice``](./src/Services/facerecognitionservice.ts)<br>
 This service uses faceapi.js to detect faces and to compare them to stored face descriptors in the database. If a user is identified, it notifies the mirror service via events.<br><br>
-[``mirrorservice``](./src/Services/mirrorservice.ts)<br>
+[``mirrorservice``](./src/services/mirrorservice.ts)<br>
 This is the main "worker" which presents widets to the user and decides when to load a new profile.
 <br>
 
@@ -62,7 +65,7 @@ As I mentioned, contribution is highly appreciated. Feel free to create a pull r
 <br><br>
 
 # Developing a Widget
-Creating own widgets is very easy. Instantiation, presentation and the presentation of the user settings on the configuration page is all handled by the mirror. To make that work, your widget has to extend the base class [``Widget``](./src/Widgets/Widget.ts). If your widget has configurable settings, you also have to create a class Settings class, which extends the settings base class [``WidgetSettings``](./src/Widgets/WidgetSettings.ts).
+Creating own widgets is very easy. Instantiation, presentation and the presentation of the user settings on the configuration page is all handled by the mirror. To make that work, your widget has to extend the base class [``Widget``](./src/Widgets/widget.ts). If your widget has configurable settings, you also have to create a class Settings class, which extends the settings base class [``WidgetSettings``](./src/Widgets/widgetsettings.ts).
 <br><br>
 
 ## how widgets are registered
@@ -87,7 +90,7 @@ Once my face is recognized, the mirror will greet me and show my widgets:
 ![Testwidget user inteface](./docs/img/testwidget.png)
 
 <br><br>
-### 1. Setup the files
+## 1. Setup the files
 
 We create a new Directory ``Widget_Test`` inside the widget directory. Inside that we create the files ``Widget_Test.ts``, ``Widget_Test_Settings.ts`` and ``export.ts``.
 
@@ -103,7 +106,7 @@ We create a new Directory ``Widget_Test`` inside the widget directory. Inside th
 ```
 <br>
 
-### 2. Define the settings class
+## 2. Define the settings class
 
 The settings class must extend the abstract class ``WidgetSettings``. This makes sure, that the user can configure the default values ``Enabled``, ``Div`` and ``Row``. The class is also used by the mirror service to store all setting items in the database.
 
@@ -135,7 +138,7 @@ constructor(key: string, friendlyName: string, description: string, readOnly: bo
 As you can see, this corresponds directly to the display on the user interface.
 <br><br>
 
-### 3. Define the widget
+## 3. Define the widget
 
 The Widget class must extend the base class ``Widget``. This makes sure the widget provides basic metadata information which is presented to the user on the web interface. The base class will also handle when to show the widget, since it listens to the ``currentUserChangedEvent`` of the mirror service. It will also query the database for the corresponding ``WidgetSettings`` object.
 

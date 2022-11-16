@@ -24,3 +24,7 @@
 .lukatooltip:hover .lukatooltiptext {
   visibility: visible;
 }
+
+#WelcomeMessage {
+  padding-left: 15px;
+}

@@ -3,6 +3,7 @@
   This is the webpage for the user configurtion interface. 
 -->
 <html lang="en">
+
 <head>
   <title>magic spiegel</title>
   <meta charset="utf-8">
@@ -19,25 +20,24 @@
   <script type="text/javascript" src="js/face-api.js"></script>
   <script type="text/javascript" src="js/faceRecognition.js"></script>
 </head>
+
 <body>
   <header>
-
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
       <!--<span class="navbar-brand d-block d-sm-none" id="NavbarBrand"></span>-->
-      <span class="navbar-brand" onclick="UserClicked('PUBLIC', this)">magic spiegel</span>
+      <span class="navbar-brand" onclick="onUserClicked('PUBLIC', this)">magic spiegel</span>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav" id="NavbarUserList">
-            <li class="nav-item">
-                <a class="nav-link" href="#" onclick="AddUserClicked()"><i class="fas fa-user-plus"></i></a>
-            </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="onAddUserClicked()"><i class="fas fa-user-plus"></i></a>
+          </li>
         </ul>
       </div>
     </nav>
   </header>
-
   <div class="container">
     <div class="row">
       <div class="page-header text-center" id="WelcomeMessage">
@@ -45,13 +45,10 @@
         <h1 class="display-4" id="Header"></h1>
       </div>
     </div>
-
     <br>
     <br>
-
     <div class="row">
       <div class="col-sm">
-
         <table class="table" id="WidgetTable" style="display: none;">
           <thead>
             <tr>
@@ -65,28 +62,28 @@
           <tbody id="WidgetTableRows">
           </tbody>
         </table>
-
         <div class="form" id="RegisterUserForm" style="display:none;">
           <div id="FormGroupMedia" class="form-group">
-            
-          </div>
+            <img id="img" style="display: block; visibility: visible; height: 512px; width: 512px; object-fit: cover;" />
+            <br>
+            <input type="file" accept="image/*" onchange="onImageSelected(event)">
+            </div>
           <br>
           <div class="form-group">
             <input name="FormName" type="text" class="form-control" id="FormName" placeholder="Name">
           </div>
-          <button type="button" id="RegisterButton" class="btn btn-dark" disabled>Registrieren</button>
+          <button type="button" id="RegisterButton" class="btn btn-dark" disabled
+            onclick="onRegisterClicked()">Registrieren</button>
         </div>
-
       </div>
     </div>
   </div>
-
-  <img id="initImg" src="img/merkel.png" style="display: none;"/>
+  <img id="initImg" src="img/merkel.png" style="display: none;" />
   <script type="text/javascript" src="js/index.js"></script>
-
 </body>
 <footer>
-    <br>
-    <br>
+  <br>
+  <br>
 </footer>
+
 </html>

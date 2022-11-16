@@ -1,44 +1,44 @@
 <html lang="en">
-	<!--
-		This is the main windows layout. Basically, Widgets can be arranged on the top left, top right, bottom left and bottom right corner.
-	-->
-	<head>
-	  <meta charset="utf-8">
-	  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-	  <link href="data/Frontend/css/all.css" rel="stylesheet">
-	  <title>MagicSpiegel</title>
-	</head>
-	
-	<body id="body" style="background-color: #000000;">
-		<video id="cam" autoplay="" muted="" playsinline="" style="display:none;" width="512" height="512"></video>
-		<div id="container">
-			<div id="links" style="position:absolute; left:0; top:0; display:block;">
-				<div id="links-1" class="column"></div>
-				<div id="links-2" class="column"></div>
-				<div id="links-3" class="column"></div>
-				<div id="links-4" class="column"></div>
-				<div id="links-5" class="column"></div>
-				<div id="links-6" class="column"></div>
-				<div id="links-7" class="column"></div>
-				<div id="links-8" class="column"></div>
-				<div id="links-9" class="column"></div>
-				<div id="links-10" class="column"></div>
-			</div>
+<!--This is the main windows layout. Basically, Widgets can be arranged on the top left, top right, bottom left and bottom right corner.-->
 
-			<div id="rechts" style="width:auto; display:block; position:absolute; right:0; top:0;">
-				<div id="rechts-1" class="column"></div>
-				<div id="rechts-2" class="column"></div>
-				<div id="rechts-3" class="column"></div>
-				<div id="rechts-4" class="column"></div>
-				<div id="rechts-5" class="column"></div>
-				<div id="rechts-6" class="column"></div>
-				<div id="rechts-7" class="column"></div>
-				<div id="rechts-8" class="column"></div>
-				<div id="rechts-9" class="column"></div>
-				<div id="rechts-10" class="column"></div>
-			</div>
-		</div>
-    
-		<script>require('./dist/index.js');</script>
-	</body>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="data/AdminPanel/css/all.css" rel="stylesheet">
+    <title>MagicSpiegel</title>
+</head>
+
+<body id="body" style="background-color: #000000;">
+    <video id="cam" autoplay="" muted="" playsinline="" style="display:none;" width="512" height="512"></video>
+    <div id="container">
+        <div id="links" style="position:absolute; left:0; top:0; display:block;">
+            <div id="links-1" class="column"></div>
+            <div id="links-2" class="column"></div>
+            <div id="links-3" class="column"></div>
+            <div id="links-4" class="column"></div>
+            <div id="links-5" class="column"></div>
+            <div id="links-6" class="column"></div>
+            <div id="links-7" class="column"></div>
+            <div id="links-8" class="column"></div>
+            <div id="links-9" class="column"></div>
+            <div id="links-10" class="column"></div>
+        </div>
+
+        <div id="rechts" style="width:auto; display:block; position:absolute; right:0; top:0;">
+            <div id="rechts-1" class="column"></div>
+            <div id="rechts-2" class="column"></div>
+            <div id="rechts-3" class="column"></div>
+            <div id="rechts-4" class="column"></div>
+            <div id="rechts-5" class="column"></div>
+            <div id="rechts-6" class="column"></div>
+            <div id="rechts-7" class="column"></div>
+            <div id="rechts-8" class="column"></div>
+            <div id="rechts-9" class="column"></div>
+            <div id="rechts-10" class="column"></div>
+        </div>
+    </div>
+    <script>require("./dist/renderer.js");</script>
+</body>
+
 </html>
