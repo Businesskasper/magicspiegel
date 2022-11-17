@@ -60,7 +60,7 @@ try {
     // Initialize camera
     .then((service) => service.InitializeCamera(512, 512))
     // Start detecting
-    // .then((service) => service.DetectFaces());
+    .then((service) => service.DetectFaces());
 } catch (err) {
   logger.Error(err);
   throw err;

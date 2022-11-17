@@ -1,0 +1,9 @@
+Deps zum Laufen bringen:
+arch=armv7l > .npmrc
+npm set arch=armv7l && npm install
+./node_modules/.bin/electron-rebuild 
+
+Kamera rotieren:
+v4l2-ctl --set-ctrl=rotate=90 > /etc/rc.local
+Autostart für App:
+/home/pi/.config/lxsession/LXDE-pi/autostart E

@@ -79,16 +79,22 @@ export class RecognitionService {
     (this.cam as HTMLVideoElement).height = height;
 
     try {
-      (this.cam as HTMLVideoElement).srcObject =
-        await navigator.mediaDevices.getUserMedia({
-          audio: false,
-          video: {
-            facingMode: "user",
-            width: width,
-            height: height,
-            frameRate: { exact: 5 },
-          },
-        });
+      const media = await navigator.mediaDevices.getUserMedia({
+        audio: false,
+        video: {
+          facingMode: "user",
+          width: width,
+          height: height,
+          frameRate: { exact: 5 },
+        },
+      });
+      (this.cam as HTMLVideoElement).srcObject = media;
+
+      // const devices = await navigator.mediaDevices.enumerateDevices();
+      // devices.forEach(device => {
+      //   console.log('device', device.label)
+      // })
+
 
       await this.timeout(1000);
       return this;

@@ -5,7 +5,7 @@ import * as path from "path";
 // // TODO - add electron-isdev
 // const isDev = true;
 // if (isDev) {
-//   const electronReload = require("electron-reload")(resolve(__dirname, ".."), {
+//   const electronReload = require("electron-reload")(path.resolve(__dirname, ".."), {
 //     ignoreInitial: false,
 //     awaitWriteFinish: true,
 //   });
@@ -25,6 +25,9 @@ app.whenReady().then(() => {
       nodeIntegration: true,
       nodeIntegrationInWorker: true,
       contextIsolation: false,
+      allowRunningInsecureContent: true,
+      webgl: true,
+      webSecurity: false,
       preload: path.join(__dirname, "preload.js"),
     },
   });
