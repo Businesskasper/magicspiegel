@@ -17,8 +17,8 @@ import * as path from "path";
 app.whenReady().then(() => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    height: 1024,
-    width: 1248,
+    height: 1920,
+    width: 1080,
     backgroundColor: "#000000",
     autoHideMenuBar: true,
     webPreferences: {
@@ -35,7 +35,7 @@ app.whenReady().then(() => {
   mainWindow.loadFile(path.join(__dirname, "../index.html"));
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 });
 
 // Quit when all windows are closed

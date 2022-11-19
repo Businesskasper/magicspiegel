@@ -1,9 +1,13 @@
 Deps zum Laufen bringen:
-arch=armv7l > .npmrc
-npm set arch=armv7l && npm install
-./node_modules/.bin/electron-rebuild 
+npm set arch=armv7l && npm install --tagert_arch=armv7l && ./node_modules/.bin/electron-rebuild 
 
-Kamera rotieren:
+Kamera rotieren über screen config oder 
 v4l2-ctl --set-ctrl=rotate=90 > /etc/rc.local
+
 Autostart für App:
-/home/pi/.config/lxsession/LXDE-pi/autostart E
+/etc/xdg/autostart/launchmirror.desktop
+[Desktop Entry]
+Name=Run magicspiegel
+Exec=npm --prefix /home/pi/Desktop/magicspiegel run launch
+Type=Application
+
