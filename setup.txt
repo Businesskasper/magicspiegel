@@ -1,8 +1,11 @@
 Deps zum Laufen bringen:
 npm set arch=armv7l && npm install --tagert_arch=armv7l && ./node_modules/.bin/electron-rebuild 
 
-Kamera rotieren über screen config oder 
-v4l2-ctl --set-ctrl=rotate=90 > /etc/rc.local
+Kamera rotieren:
+/etc/rc.local
+v4l2-ctl --set-ctrl=rotate=90
+
+Screen rotieren über screen config
 
 Autostart für App:
 /etc/xdg/autostart/launchmirror.desktop
