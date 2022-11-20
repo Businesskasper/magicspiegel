@@ -5,3 +5,5 @@
 export interface UserUpdated {
   userName: string;
 }
+
+export const UserUpdatedToken = 'UserUpdated';

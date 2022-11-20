@@ -115,36 +115,39 @@ export class RecognitionService {
 
   // Detects faces in an infinite loop. Once a face is detected, the personDetectedEvent is used to notify the mirror service.
   public async DetectFaces(): Promise<void> {
-    this.logger.Debug("Detecting...");
+    
+    setTimeout(async () => {
+      this.logger.Debug("Detecting...");
 
-    const singleResult = await this.DetectFace(this.cam as HTMLVideoElement);
+      const singleResult = await this.DetectFace(this.cam as HTMLVideoElement);
 
-    if (!!singleResult) {
-      this.logger.Info("Face detected");
+      if (!!singleResult) {
+        this.logger.Info("Face detected");
 
-      this.dataAdapter
-        .User(null)
-        .forEach(({ name, descriptors }: Model.User) => {
-          const labeledFaceDescriptors = new LabeledFaceDescriptors(
-            name,
-            descriptors
-          );
-          this.logger.Info(`Comparing with ${labeledFaceDescriptors.label}`);
+        this.dataAdapter
+          .User(null)
+          .forEach(({ name, descriptors }: Model.User) => {
+            const labeledFaceDescriptors = new LabeledFaceDescriptors(
+              name,
+              descriptors
+            );
+            this.logger.Info(`Comparing with ${labeledFaceDescriptors.label}`);
 
-          const faceMatcher = new FaceMatcher(labeledFaceDescriptors, 0.6);
-          const bestMatch = faceMatcher.findBestMatch(singleResult.descriptor);
+            const faceMatcher = new FaceMatcher(labeledFaceDescriptors, 0.6);
+            const bestMatch = faceMatcher.findBestMatch(singleResult.descriptor);
 
-          if (bestMatch !== null && bestMatch.label !== "unknown") {
-            this.logger.Info(`Detected ${bestMatch.label}`);
-            this.userDetectedEvent.dispatch(this, {
-              userName: bestMatch.label,
-            });
-          }
-        });
-    }
-
-    await this.timeout(1000);
-    this.DetectFaces();
+            if (bestMatch !== null && bestMatch.label !== "unknown") {
+              this.logger.Info(`Detected ${bestMatch.label}`);
+              this.userDetectedEvent.dispatch(this, {
+                userName: bestMatch.label,
+              });
+            }
+          });
+      }
+      // setTimeout(this.DetectFaces, 1000)
+      // await this.timeout(1000);
+      this.DetectFaces();
+    })
   }
 
   //   // Gets the saved face descriptors from the database in order to compare them to the person standing in front of the mirror.

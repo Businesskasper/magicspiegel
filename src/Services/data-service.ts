@@ -16,13 +16,14 @@ import { LoggingService } from "./logging-service";
 export class DataAdapter {
   private Database: bettersqlite3.Database;
 
-  constructor(private logger: LoggingService, private dbpath: string) {}
-
-  // Sets up the database by reading a .sql file
-  public InitializeDatabase(databaseSetupPath: string): void {
+  constructor(private logger: LoggingService, private dbpath: string) {
     this.Database = new bettersqlite3(this.dbpath, {
       verbose: (message) => this.logger.Debug(message),
     });
+  }
+
+  // Sets up the database by reading a .sql file
+  public InitializeDatabase(databaseSetupPath: string): void {
     this.ExecNonQueryScript(
       fs.readFileSync(databaseSetupPath, { encoding: "utf-8" })
     );

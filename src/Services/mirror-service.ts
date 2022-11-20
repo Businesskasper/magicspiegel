@@ -45,7 +45,10 @@ export class MirrorService {
     }
   }
 
-  private refreshCurrentUser(): void {
+  public refreshCurrentUser(): void {
+    if (!this.currentUser) {
+      this.logger.Error('refreshCurrentUser was dispatched, but no currentUser is was set');
+    }
     this.currentUser.userLoadedOn = new Date();
     this.currentUserRefreshed.dispatch(this, this.currentUser);
   }
@@ -132,6 +135,7 @@ export class MirrorService {
     }
 
     let user = users[0];
+    console.log('SetCurrentUser invoked, currentUser is: ', this.currentUser);
 
     if (this.currentUser === undefined || this.currentUser === null) {
       this.logger.Info(

@@ -63,8 +63,8 @@ export class AdminService {
           this.dataAdapter.InsertUser(user);
 
           res.sendStatus(200);
-        } catch(err) {
-          res.status(500).send({error: err.toString()});
+        } catch (err) {
+          res.status(500).send({ error: err.toString() });
         }
       })
       .delete("/api/User/:userName", (req, res) => {
@@ -72,8 +72,8 @@ export class AdminService {
         try {
           this.dataAdapter.DeleteUser(userName);
           res.sendStatus(200);
-        } catch(err) {
-          res.status(500).send({error: err.toString()});
+        } catch (err) {
+          res.status(500).send({ error: err.toString() });
         }
       })
       .get("/api/User/:userName/WidgetSettings/:widgetName/:widgetVersion", (req, res) => {
@@ -84,7 +84,7 @@ export class AdminService {
           widgetName,
           widgetVersion
         );
-          
+
         res.json({ ...shape, ...widgetSettings });
       })
       .put("/api/User/:userName/WidgetSettings/:widgetName/:widgetVersion", (req, res) => {
@@ -97,12 +97,12 @@ export class AdminService {
             Number(widgetVersion),
             req.body
           );
-
-          this.widgetSettingsUpdatedEvent.dispatch(this, { userName });
-
-          res.sendStatus(200);
-        } catch(err) {
-          res.status(500).send({error: err.toString()});
+          setTimeout(() => {
+            this.widgetSettingsUpdatedEvent.dispatch(this, { userName });
+            res.sendStatus(200);
+          }, 200)
+        } catch (err) {
+          res.status(500).send({ error: err.toString() });
         }
       })
       .get("/", (req, res) => {

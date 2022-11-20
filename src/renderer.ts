@@ -1,3 +1,4 @@
+import { ipcRenderer } from 'electron';
 import * as fs from "fs";
 import * as Events from "./Events";
 import * as Services from "./Services";
@@ -15,8 +16,6 @@ const recognitionService = new Services.RecognitionService(dataAdapter, logger);
 // Presentation and widget management
 const mirrorService = new Services.MirrorService(dataAdapter, logger);
 
-// Admin frontend and api
-const adminService = new Services.AdminService(dataAdapter, logger);
 
 // Setup app events
 
@@ -28,25 +27,18 @@ recognitionService.onUserDetected.subscribe(
 );
 
 // Gets invoked when a user profile was updated from the admin panel
-adminService.onWidgetSettingsUpdatedEvent.subscribe(
-  (sender: Services.AdminService, user: Events.UserUpdated) => {
-    if (user.userName === "PUBLIC") mirrorService.LoadGeneralWidgets();
-    else mirrorService.currentUser === null;
-  }
-);
+ipcRenderer.on(Events.UserUpdatedToken, (event, { userName }: Events.UserUpdated) => {
+  console.log(Events.UserUpdatedToken + ' received: ', userName);
+  if (userName === "PUBLIC") mirrorService.LoadGeneralWidgets();
+  else mirrorService.refreshCurrentUser();
+  // else mirrorService.currentUser === null;
+})
 
 // Initialize app
 
 try {
   // Set up secrets for debugging, mainly private api keys
   setEnvironment("./secrets.env");
-
-  // Start the admin backend
-  // prettier-ignore
-  adminService
-    .ConfigureMiddleware()
-    .ConfigureRoutes()
-    .Listen(5000);
 
   // Create the database
   dataAdapter.InitializeDatabase("./db.txt");
