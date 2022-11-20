@@ -20,16 +20,15 @@ app.whenReady().then(() => {
 
   // Create backend for admin-service
   // Runs in main process to prevent blocking
-  const backendLogger = new Services.LoggingService(console.log);
-  const backendDataAdapter = new Services.DataAdapter(backendLogger, "./magicspiegel.db");
-  const backendService = new Services.AdminService(backendDataAdapter, backendLogger);
+  const logger = new Services.LoggingService(console.log);
+  const dataAdapter = new Services.DataAdapter(logger, "./magicspiegel.db");
+  const adminService = new Services.AdminService(dataAdapter, logger);
 
-  backendService.onWidgetSettingsUpdatedEvent.subscribe((sender: Services.AdminService, event: Events.UserUpdated) => {
-    console.log('Invoking ' + Events.UserUpdatedToken + ': ' + event.userName);
+  adminService.onWidgetSettingsUpdatedEvent.subscribe((sender: Services.AdminService, event: Events.UserUpdated) => {
     mainWindow.webContents.send(Events.UserUpdatedToken, event);
   })
 
-  backendService
+  adminService
     .ConfigureMiddleware()
     .ConfigureRoutes()
     .Listen(5000);
@@ -38,7 +37,7 @@ app.whenReady().then(() => {
   const mainWindow = new BrowserWindow({
     height: 1920,
     width: 1080,
-    fullscreen: true,
+    // fullscreen: true,
     backgroundColor: "#000000",
     autoHideMenuBar: true,
     webPreferences: {
@@ -55,7 +54,7 @@ app.whenReady().then(() => {
   mainWindow.loadFile(path.join(__dirname, "../index.html"));
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools();
+  mainWindow.webContents.openDevTools();
 });
 
 // Quit when all windows are closed

@@ -28,10 +28,18 @@ recognitionService.onUserDetected.subscribe(
 
 // Gets invoked when a user profile was updated from the admin panel
 ipcRenderer.on(Events.UserUpdatedToken, (event, { userName }: Events.UserUpdated) => {
-  console.log(Events.UserUpdatedToken + ' received: ', userName);
-  if (userName === "PUBLIC") mirrorService.LoadGeneralWidgets();
-  else mirrorService.refreshCurrentUser();
-  // else mirrorService.currentUser === null;
+  logger.Info(Events.UserUpdatedToken + ' received: ' + userName);
+  const currentUserName = mirrorService.currentUser?.userLoaded?.name;
+  if (userName === "PUBLIC" && currentUserName !== "PUBLIC" && currentUserName !== "") {
+    logger.Info("Invoking LoadGeneralWidgets()")
+    mirrorService.LoadGeneralWidgets();
+  }
+  else {
+    logger.Info("Resetting currentUser")
+    // mirrorService.currentUser === null
+    // else mirrorService.refreshCurrentUser();
+    mirrorService.setNewCurrentUser({ ...mirrorService.currentUser });
+  };
 })
 
 // Initialize app
@@ -50,7 +58,7 @@ try {
     // Initialize faceapi.js
     .InitializeDetection()
     // Initialize camera
-    .then((service) => service.InitializeCamera(512, 512))
+    .then((service) => service.InitializeCamera(800, 800))
     // Start detecting
     .then((service) => service.DetectFaces());
 } catch (err) {

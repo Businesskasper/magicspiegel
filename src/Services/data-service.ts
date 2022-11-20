@@ -17,8 +17,11 @@ export class DataAdapter {
   private Database: bettersqlite3.Database;
 
   constructor(private logger: LoggingService, private dbpath: string) {
+    // this.Database = new bettersqlite3(this.dbpath, {
+    //   verbose: (message) => this.logger.Debug(message),
+    // });
     this.Database = new bettersqlite3(this.dbpath, {
-      verbose: (message) => this.logger.Debug(message),
+      verbose: (message) => {}
     });
   }
 
@@ -223,18 +226,17 @@ export class DataAdapter {
       .all()
       .forEach((widgetSettingsItemFromDb) => {
         let description = widgetSettingsItemFromDb.Description;
-        if (description == "null" || description == "NULL") {
+        if (description?.toString()?.toUpperCase() == "NULL") {
           description = null;
         }
 
         let options = widgetSettingsItemFromDb.Options;
-        if (options == "null" || options == "NULL") {
+        if (options?.toString()?.toUpperCase() == "NULL") {
           options = null;
         }
 
         const presetValue =
-          widgetSettingsItemFromDb.PresetValue == "null" ||
-          widgetSettingsItemFromDb.PresetValue == "NULL"
+          widgetSettingsItemFromDb.PresetValue?.toString()?.toUpperCase() == "NULL"
             ? null
             : this.GetValue(
                 widgetSettingsItemFromDb.Type,

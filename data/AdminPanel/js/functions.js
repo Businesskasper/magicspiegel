@@ -197,6 +197,7 @@ function onAddUserClicked() {
 // The users profile is refreshed, if he currently is in front of the mirror
 function onSubmitWidgetSettingsClicked(sender, userName, widgetName, widgetVersion) {
   const {WidgetSettingsItems, ...settings} = userWidgets[`${widgetName}_${widgetVersion}`];
+  document.getElementsByTagName("body")[0].style.cursor = "wait";
   PutUserWidgetSettings(
     userName,
     widgetName,
@@ -209,6 +210,8 @@ function onSubmitWidgetSettingsClicked(sender, userName, widgetName, widgetVersi
       sender.classList.remove("btn-success");
       sender.classList.add("btn-secondary");
     }, 2000);
+  }).finally(() => {
+    document.getElementsByTagName("body")[0].style.cursor = "";
   });
 }
 

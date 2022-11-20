@@ -97,10 +97,9 @@ export class AdminService {
             Number(widgetVersion),
             req.body
           );
-          setTimeout(() => {
-            this.widgetSettingsUpdatedEvent.dispatch(this, { userName });
-            res.sendStatus(200);
-          }, 200)
+          
+          this.widgetSettingsUpdatedEvent.dispatch(this, { userName });
+          res.sendStatus(200);
         } catch (err) {
           res.status(500).send({ error: err.toString() });
         }

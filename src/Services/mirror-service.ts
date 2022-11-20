@@ -37,7 +37,7 @@ export class MirrorService {
     private logger: Services.LoggingService
   ) {}
 
-  private setNewCurrentUser(userLoaded: Models.UserLoaded): void {
+  public setNewCurrentUser(userLoaded: Models.UserLoaded): void {
     if (userLoaded !== null) {
       this.currentUser = userLoaded;
       this.SayHi(this.currentUser.userLoaded);
@@ -45,7 +45,7 @@ export class MirrorService {
     }
   }
 
-  public refreshCurrentUser(): void {
+  private refreshCurrentUser(): void {
     if (!this.currentUser) {
       this.logger.Error('refreshCurrentUser was dispatched, but no currentUser is was set');
     }
